@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -118,7 +117,7 @@ namespace SignalJump
                     CreateBasicCell(x, y);
                     break;
                 case ELevelCellType.Finish:
-                    CreateBasicCell(x, y);
+                    CreateFinishCell(x, y);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(cellType), cellType, null);
@@ -127,9 +126,21 @@ namespace SignalJump
 
         private void CreateBasicCell(int x, int y)
         {
-            BasicLevelCell basicLevelCell = Object.Instantiate(_settings._basicLevelCellPrefab);
+            BasicLevelCell basicLevelCell = Object.Instantiate(_settings.BasicLevelCellPrefab);
             basicLevelCell.transform.position = ConvertCellToPosition(x, y);
-            basicLevelCell.SetCell(x, y, _settings.AvailableCellColor, _settings.UnavailableCellColor);
+            var basicCanMoveChecker = new BasicCanMoveChecker();
+            basicLevelCell.SetCell(x, y, _settings.AvailableCellColor, _settings.UnavailableCellColor, basicCanMoveChecker);
+            basicLevelCell.SetAvailable(false, 0);
+            _cells[x, y] = basicLevelCell;
+        }
+
+        private void CreateFinishCell(int x, int y)
+        {
+            BasicLevelCell basicLevelCell = Object.Instantiate(_settings.FinishLevelCellPrefab);
+            basicLevelCell.transform.position = ConvertCellToPosition(x, y);
+            var basicCanMoveChecker = new BasicCanMoveChecker();
+            basicLevelCell.SetCell(x, y, _settings.AvailableCellColor, _settings.UnavailableCellColor, basicCanMoveChecker);
+            basicLevelCell.SetIsFinish(true);
             basicLevelCell.SetAvailable(false, 0);
             _cells[x, y] = basicLevelCell;
         }
@@ -164,6 +175,24 @@ namespace SignalJump
 
             int duration = (int) ( _settings.AvailabilitySwapDuration * 1000);
             await UniTask.Delay(duration);
+        }
+
+        public bool IsAllCompleted()
+        {
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    BasicLevelCell levelCell = _cells[x, y];
+                    if (levelCell != null)
+                    {
+                        if (!levelCell.IsCompleted && !levelCell.IsFinish)
+                            return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

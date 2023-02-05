@@ -11,12 +11,16 @@ namespace SignalJump
         [SerializeField] private MeshRenderer _meshRenderer;
         private Color _availableColor;
         private Color _unavailableColor;
+        private ICanMoveChecker _canMoveChecker;
+
+        public bool IsFinish { get; private set; }
         public Vector2Int CellPosition { get; private set; }
         public bool IsCompleted { get; private set; }
         public bool IsAvailable { get; private set; }
 
-        public void SetCell(int x, int y, Color availableColor, Color unavailableColor)
+        public void SetCell(int x, int y, Color availableColor, Color unavailableColor, ICanMoveChecker canMoveChecker)
         {
+            _canMoveChecker = canMoveChecker;
             _unavailableColor = unavailableColor;
             _availableColor = availableColor;
             CellPosition = new Vector2Int(x, y);
@@ -84,17 +88,12 @@ namespace SignalJump
         {
             int myX = CellPosition.x;
             int myY = CellPosition.y;
+            return _canMoveChecker.CanMoveTo(myX, myY, x, y);
+        }
 
-            if (myX == x && myY == y + 1) return true;
-            if (myX == x && myY == y + 2) return true;
-            if (myX == x && myY == y - 1) return true;
-            if (myX == x && myY == y - 2) return true;
-            if (myX == x + 1 && myY == y) return true;
-            if (myX == x + 2 && myY == y) return true;
-            if (myX == x - 1 && myY == y) return true;
-            if (myX == x - 2 && myY == y) return true;
-
-            return false;
+        public void SetIsFinish(bool isFinish)
+        {
+            IsFinish = isFinish;
         }
     }
 }

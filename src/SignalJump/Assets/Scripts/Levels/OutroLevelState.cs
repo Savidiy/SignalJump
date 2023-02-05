@@ -9,21 +9,16 @@ namespace SignalJump
         private readonly LevelHolder _levelHolder;
         private readonly PlayerHolder _playerHolder;
         private readonly GameStateMachine _gameStateMachine;
-        private readonly GameProgressProvider _gameProgressProvider;
 
-        public OutroLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, GameStateMachine gameStateMachine,
-            GameProgressProvider gameProgressProvider)
+        public OutroLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, GameStateMachine gameStateMachine)
         {
             _levelHolder = levelHolder;
             _playerHolder = playerHolder;
             _gameStateMachine = gameStateMachine;
-            _gameProgressProvider = gameProgressProvider;
         }
 
         public void Enter()
         {
-            _gameProgressProvider.Progress.CompleteSelectedLevel();
-            _gameProgressProvider.SaveProgress();
             PlayOutro().Forget();
         }
 

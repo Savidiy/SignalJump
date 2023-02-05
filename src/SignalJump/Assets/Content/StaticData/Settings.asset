@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSequence: {fileID: 11400000, guid: b41369b73520f7f4ea73f038cbd1d993, type: 2}
   LevelButtonHierarchyPrefab: {fileID: 593094060893800252, guid: e2ade03be1c45b646b67aaaaab060a92, type: 3}
-  _basicLevelCellPrefab: {fileID: 7745713556342707986, guid: 59e715b3ff4080849bf5d4d5ef2aff1c, type: 3}
+  BasicLevelCellPrefab: {fileID: 7745713556342707986, guid: 59e715b3ff4080849bf5d4d5ef2aff1c, type: 3}
+  FinishLevelCellPrefab: {fileID: 7745713556342707986, guid: ead328907beb78c44b72a7f4a4c6b52e, type: 3}
   CellStep: 1.2
   MaxSkippedLevelsCount: 2
   ShowCellsDelay: 0.2

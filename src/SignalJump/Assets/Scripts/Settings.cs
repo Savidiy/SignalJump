@@ -9,7 +9,8 @@ namespace SignalJump
     {
         public LevelSequence LevelSequence;
         public LevelButtonHierarchy LevelButtonHierarchyPrefab;
-        public BasicLevelCell _basicLevelCellPrefab;
+        public BasicLevelCell BasicLevelCellPrefab;
+        public BasicLevelCell FinishLevelCellPrefab;
 
         public float CellStep = 3;
         public int MaxSkippedLevelsCount = 3;

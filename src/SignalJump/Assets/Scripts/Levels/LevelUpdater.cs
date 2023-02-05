@@ -12,10 +12,11 @@ namespace SignalJump
         private readonly LevelStateMachine _levelStateMachine;
         private readonly TickInvoker _tickInvoker;
         private readonly Camera _camera;
-        private readonly Settings _settings;
+        private readonly GameProgressProvider _gameProgressProvider;
 
         public LevelUpdater(LevelHolder levelHolder, PlayerHolder playerHolder, LevelWindow levelWindow,
-            LevelStateMachine levelStateMachine, TickInvoker tickInvoker, Camera camera, Settings settings)
+            LevelStateMachine levelStateMachine, TickInvoker tickInvoker, Camera camera,
+            GameProgressProvider gameProgressProvider)
         {
             _levelHolder = levelHolder;
             _playerHolder = playerHolder;
@@ -23,7 +24,7 @@ namespace SignalJump
             _levelStateMachine = levelStateMachine;
             _tickInvoker = tickInvoker;
             _camera = camera;
-            _settings = settings;
+            _gameProgressProvider = gameProgressProvider;
         }
 
         public void Activate()
@@ -46,14 +47,14 @@ namespace SignalJump
                         if (cell.IsAvailable)
                         {
                             Vector2Int cellPosition = cell.CellPosition;
-                            MakeTurnAsync(cellPosition).Forget();
+                            MakeTurnAsync(cellPosition, cell.IsFinish).Forget();
                         }
                     }
                 }
             }
         }
 
-        private async UniTask MakeTurnAsync(Vector2Int cellPosition)
+        private async UniTask MakeTurnAsync(Vector2Int cellPosition, bool isFinish)
         {
             _levelHolder.HideCell(_playerHolder.PlayerPosition);
             _levelWindow.DeactivateButtons();
@@ -61,8 +62,25 @@ namespace SignalJump
 
             await _playerHolder.MovePlayerTo(cellPosition);
             await _levelHolder.SetCellAvailabilityFrom(cellPosition);
-            _levelWindow.ActivateButtons();
-            _tickInvoker.Updated += OnUpdated;
+
+            if (isFinish)
+            {
+                if (_levelHolder.IsAllCompleted())
+                {
+                    _gameProgressProvider.Progress.CompleteSelectedLevel();
+                    _gameProgressProvider.SaveProgress(); 
+                    _levelStateMachine.EnterToState<OutroLevelState>();
+                }
+                else
+                {
+                    _levelStateMachine.EnterToState<RestartLevelState>();
+                }
+            }
+            else
+            {
+                _levelWindow.ActivateButtons();
+                _tickInvoker.Updated += OnUpdated;
+            }
         }
 
         private void OnRestartClicked()
