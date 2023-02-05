@@ -34,3 +34,6 @@ MonoBehaviour:
   PlayerIntroOffset: {x: 0, y: 10, z: 0}
   PlayerOutroEasing: 1
   PlayerOutroOffset: {x: 0, y: 10, z: 0}
+  AvailableCellColor: {r: 0.38568, g: 0.764151, b: 0.38568, a: 1}
+  UnavailableCellColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+  AvailabilitySwapDuration: 0.1

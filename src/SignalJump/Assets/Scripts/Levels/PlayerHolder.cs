@@ -16,6 +16,8 @@ namespace SignalJump
         private PlayerView _playerView;
         private TweenerCore<Vector3, Vector3, VectorOptions> _tween;
 
+        public Vector2Int PlayerPosition { get; private set; }
+
         public PlayerHolder(Settings settings, LevelHolder levelHolder)
         {
             _settings = settings;
@@ -35,6 +37,7 @@ namespace SignalJump
         {
             _playerView.gameObject.SetActive(true);
             _tween?.Kill();
+            PlayerPosition = startPosition;
 
             Vector3 toPosition = _levelHolder.ConvertCellToPosition(startPosition.x, startPosition.y);
             Vector3 fromPosition = toPosition + _settings.PlayerIntroOffset;
@@ -57,6 +60,19 @@ namespace SignalJump
 
         public void Dispose()
         {
+        }
+
+        public async UniTask MovePlayerTo(Vector2Int cellPosition)
+        {
+            Transform transform = _playerView.transform;
+            Vector3 toPosition = _levelHolder.ConvertCellToPosition(cellPosition.x, cellPosition.y);
+
+            await transform
+                .DOMove(toPosition, _settings.PlayerIntroDuration)
+                .SetEase(_settings.PlayerIntroEasing)
+                .ToUniTask();
+
+            PlayerPosition = cellPosition;
         }
     }
 }

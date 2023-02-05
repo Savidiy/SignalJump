@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -79,6 +80,12 @@ namespace SignalJump
             await UniTask.WhenAll(tasks);
         }
 
+        public void HideCell(Vector2Int cellPosition)
+        {
+            BasicLevelCell basicLevelCell = _cells[cellPosition.x, cellPosition.y];
+            basicLevelCell.HideAsync(0, _settings, CancellationToken.None).Forget();
+        }
+
         public async UniTask HideCells(CancellationToken token)
         {
             List<UniTask> tasks = new();
@@ -122,6 +129,8 @@ namespace SignalJump
         {
             BasicLevelCell basicLevelCell = Object.Instantiate(_settings._basicLevelCellPrefab);
             basicLevelCell.transform.position = ConvertCellToPosition(x, y);
+            basicLevelCell.SetCell(x, y, _settings.AvailableCellColor, _settings.UnavailableCellColor);
+            basicLevelCell.SetAvailable(false, 0);
             _cells[x, y] = basicLevelCell;
         }
 
@@ -134,6 +143,27 @@ namespace SignalJump
 
         public void Dispose()
         {
+        }
+
+        public async UniTask SetCellAvailabilityFrom(Vector2Int cellPosition)
+        {
+            BasicLevelCell fromCell = _cells[cellPosition.x, cellPosition.y];
+
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    BasicLevelCell levelCell = _cells[x, y];
+                    if (levelCell != null)
+                    {
+                        var isAvailable = !levelCell.IsCompleted && fromCell.CanMoveTo(x, y);
+                        levelCell.SetAvailable(isAvailable, _settings.AvailabilitySwapDuration);
+                    }
+                }
+            }
+
+            int duration = (int) ( _settings.AvailabilitySwapDuration * 1000);
+            await UniTask.Delay(duration);
         }
     }
 }

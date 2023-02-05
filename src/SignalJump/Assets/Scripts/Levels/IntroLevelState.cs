@@ -11,14 +11,15 @@ namespace SignalJump
         private readonly PlayerHolder _playerHolder;
         private CancellationTokenSource _cancellationTokenSource;
 
-        public IntroLevelState(LevelStateMachine levelStateMachine, GameProgressProvider gameProgressProvider, LevelHolder levelHolder, PlayerHolder playerHolder)
+        public IntroLevelState(LevelStateMachine levelStateMachine, GameProgressProvider gameProgressProvider,
+            LevelHolder levelHolder, PlayerHolder playerHolder)
         {
             _levelStateMachine = levelStateMachine;
             _gameProgressProvider = gameProgressProvider;
             _levelHolder = levelHolder;
             _playerHolder = playerHolder;
         }
-        
+
         public void Enter()
         {
             _levelHolder.StartLevel(_gameProgressProvider.Progress.SelectedLevelIndex);
@@ -31,6 +32,7 @@ namespace SignalJump
             _cancellationTokenSource = new CancellationTokenSource();
             await _levelHolder.ShowCells(_cancellationTokenSource.Token);
             await _playerHolder.ShowPlayer(_levelHolder.StartPosition, _cancellationTokenSource.Token);
+            await _levelHolder.SetCellAvailabilityFrom(_levelHolder.StartPosition);
             _levelStateMachine.EnterToState<WaitInputState>();
         }
 
