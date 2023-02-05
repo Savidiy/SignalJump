@@ -67,10 +67,13 @@ namespace SignalJump
             Transform transform = _playerView.transform;
             Vector3 toPosition = _levelHolder.ConvertCellToPosition(cellPosition.x, cellPosition.y);
 
-            await transform
-                .DOMove(toPosition, _settings.PlayerIntroDuration)
-                .SetEase(_settings.PlayerIntroEasing)
-                .ToUniTask();
+            float duration = _settings.PlayerMoveDuration;
+
+            transform.DOMoveX(toPosition.x, duration).SetEase(_settings.PlayerMoveXEasing);
+            transform.DOMoveZ(toPosition.z, duration).SetEase(_settings.PlayerMoveZEasing);
+            
+            await transform.DOMoveY(toPosition.y + _settings.PlayerMoveHeigth, duration/2).SetEase(_settings.PlayerMoveInYEasing);
+            await transform.DOMoveY(toPosition.y, duration/2).SetEase(_settings.PlayerMoveOutYEasing);
 
             PlayerPosition = cellPosition;
         }

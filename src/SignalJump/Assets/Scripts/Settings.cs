@@ -39,5 +39,13 @@ namespace SignalJump
         public Color AvailableCellColor = Color.green;
         public Color UnavailableCellColor = Color.grey;
         public float AvailabilitySwapDuration = 0.1f;
+        
+        public float PlayerMoveDuration = 0.5f;
+        public float PlayerMoveHeigth = 0.5f;
+        public Ease PlayerMoveXEasing;
+        public Ease PlayerMoveInYEasing;
+        public Ease PlayerMoveOutYEasing;
+        public Ease PlayerMoveZEasing;
+
     }
 }

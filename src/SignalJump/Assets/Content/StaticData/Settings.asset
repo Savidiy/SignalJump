@@ -18,7 +18,7 @@ MonoBehaviour:
   FinishLevelCellPrefab: {fileID: 7745713556342707986, guid: ead328907beb78c44b72a7f4a4c6b52e, type: 3}
   CellStep: 1.2
   MaxSkippedLevelsCount: 2
-  ShowCellsDelay: 0.2
+  ShowCellsDelay: 0.1
   LockedLevelColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   AvailableLevelColor: {r: 0.8773585, g: 0.41798684, b: 0.7576598, a: 1}
   CompletedLevelColor: {r: 0.23113209, g: 1, b: 0.33306113, a: 1}
@@ -27,14 +27,20 @@ MonoBehaviour:
   CellShowOffset: {x: 0, y: -1, z: 0}
   CellShowDuration: 0.3
   CellShowEasing: 1
-  CellFadeDuration: 0.3
+  CellFadeDuration: 0.2
   CellFadeEasing: 1
   PlayerViewPrefab: {fileID: 9151086856500525860, guid: 32f8cb8294f4876499cbde2cc05f7e3e, type: 3}
-  PlayerIntroDuration: 0.5
+  PlayerIntroDuration: 0.2
   PlayerIntroEasing: 1
   PlayerIntroOffset: {x: 0, y: 10, z: 0}
   PlayerOutroEasing: 1
   PlayerOutroOffset: {x: 0, y: 10, z: 0}
   AvailableCellColor: {r: 0.38568, g: 0.764151, b: 0.38568, a: 1}
   UnavailableCellColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  AvailabilitySwapDuration: 0.1
+  AvailabilitySwapDuration: 0.15
+  PlayerMoveDuration: 0.3
+  PlayerMoveHeigth: 1
+  PlayerMoveXEasing: 4
+  PlayerMoveInYEasing: 1
+  PlayerMoveOutYEasing: 1
+  PlayerMoveZEasing: 4
