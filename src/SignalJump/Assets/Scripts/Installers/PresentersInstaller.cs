@@ -1,6 +1,8 @@
+using SignalJump.MainMenu;
+using SignalJump.Shelter;
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump
 {
     public sealed class PresentersInstaller : MonoInstaller
     {

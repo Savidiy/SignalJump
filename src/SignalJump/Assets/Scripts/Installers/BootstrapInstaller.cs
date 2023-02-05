@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump
 {
     internal sealed class BootstrapInstaller : Installer<BootstrapInstaller>
     {

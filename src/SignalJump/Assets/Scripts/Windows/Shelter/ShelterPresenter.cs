@@ -1,25 +1,27 @@
 ﻿using System;
 using Object = UnityEngine.Object;
 
-namespace BountyHunter
+namespace SignalJump.Shelter
 {
     public class ShelterPresenter : IDisposable
     {
         private readonly ShelterWindowView _shelterWindowView;
         private readonly GameProgressProvider _gameProgressProvider;
         private readonly GameStateMachine _gameStateMachine;
+        private readonly Settings _settings;
 
-        public ShelterPresenter(GameProgressProvider gameProgressProvider, GameStateMachine gameStateMachine)
+        public ShelterPresenter(GameProgressProvider gameProgressProvider, GameStateMachine gameStateMachine, Settings settings)
         {
             _gameProgressProvider = gameProgressProvider;
             _gameStateMachine = gameStateMachine;
+            _settings = settings;
             _shelterWindowView = Object.FindObjectOfType<ShelterWindowView>(true);
             _shelterWindowView.HideWindow();
         }
 
         public void ShowWindow()
         {
-            _shelterWindowView.ShowWindow(_gameProgressProvider.Progress);
+            _shelterWindowView.ShowWindow(_gameProgressProvider.Progress, _settings);
             AddListeners();
         }
 
@@ -55,7 +57,7 @@ namespace BountyHunter
         private void OnStartMissionClicked()
         {
             _gameProgressProvider.SaveProgress();
-            _gameStateMachine.EnterToState<MissionGameState>();
+            _gameStateMachine.EnterToState<LevelGameState>();
         }
     }
 }

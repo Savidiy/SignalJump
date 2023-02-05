@@ -1,6 +1,6 @@
-using BountyHunter.Utils;
+using SignalJump.Utils.StateMachine;
 
-namespace BountyHunter
+namespace SignalJump
 {
     public interface IGameState : IState
     {

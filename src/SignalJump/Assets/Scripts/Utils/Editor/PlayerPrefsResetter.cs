@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace BountyHunter.Utils.Editor
+namespace SignalJump.Utils.Editor
 {
     public static class PlayerPrefsReset
     {

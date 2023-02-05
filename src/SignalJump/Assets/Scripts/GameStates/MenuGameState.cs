@@ -1,4 +1,6 @@
-﻿namespace BountyHunter
+﻿using SignalJump.MainMenu;
+
+namespace SignalJump
 {
     public sealed class MenuGameState : IGameState
     {

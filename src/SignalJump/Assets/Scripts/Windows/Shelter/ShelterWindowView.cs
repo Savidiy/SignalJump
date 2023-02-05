@@ -1,45 +1,54 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BountyHunter
+namespace SignalJump.Shelter
 {
     public sealed class ShelterWindowView : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _moneyLabel;
-        [SerializeField] private Button _testButton;
+        [SerializeField] private LevelButtonsGrid _levelButtonsGrid;
+        [SerializeField] private Button _skipButton;
         [SerializeField] private Button _menuButton;
-        [SerializeField] private Button _startMissionButton;
+        [SerializeField] private Button _startLevelButton;
         
         private Progress _progress;
-        
+        private Settings _settings;
+
         public event Action MenuClicked;
+        public event Action SkipClicked;
         public event Action StartMissionClicked;
 
-        public void ShowWindow(Progress progress)
+        public void ShowWindow(Progress progress, Settings settings)
         {
+            _settings = settings;
             _progress = progress;
+            _levelButtonsGrid.InitializeView(progress, settings);
+            _levelButtonsGrid.SelectedLevelChanged += OnSelectedLevelChanged;
             UpdateFields();
-            AddListeners();
             
             gameObject.SetActive(true);
-            
+            AddListeners();
+        }
+
+        private void OnSelectedLevelChanged(int index)
+        {
+            _progress.SelectedLevelIndex = index;
+            UpdateFields();
         }
 
         public void HideWindow()
         {
             gameObject.SetActive(false);
-            _testButton.onClick.RemoveListener(OnTestClick);
+            _skipButton.onClick.RemoveListener(OnSkipClick);
             _menuButton.onClick.RemoveListener(OnMenuClick);
-            _startMissionButton.onClick.RemoveListener(OnStartMissionClick);
+            _startLevelButton.onClick.RemoveListener(OnStartMissionClick);
         }
 
         private void AddListeners()
         {
-            _testButton.onClick.AddListener(OnTestClick);
+            _skipButton.onClick.AddListener(OnSkipClick);
             _menuButton.onClick.AddListener(OnMenuClick);
-            _startMissionButton.onClick.AddListener(OnStartMissionClick);
+            _startLevelButton.onClick.AddListener(OnStartMissionClick);
         }
 
         private void OnMenuClick()
@@ -49,17 +58,28 @@ namespace BountyHunter
 
         private void UpdateFields()
         {
-            _moneyLabel.text = _progress.Money.ToString();
+            _levelButtonsGrid.UpdateView();
+            bool hasAvailableSkips = _progress.SkippedLevels.Count < _settings.MaxSkippedLevelsCount;
+            bool canSkipLevel = _progress.CanSkipLevel(_progress.SelectedLevelIndex);
+            _skipButton.interactable = hasAvailableSkips && canSkipLevel;
+
+            _startLevelButton.interactable = _progress.SelectedLevelIndex < _settings.LevelSequence.Levels.Count;
         }
 
         private void OnStartMissionClick()
         {
-            StartMissionClicked?.Invoke();
+            // StartMissionClicked?.Invoke();
+            _progress.CompleteSelectedLevel();
+            UpdateFields();
         }
 
-        private void OnTestClick()
-        {
-            _progress.Money++;
+        private void OnSkipClick()
+        {            
+            if (_progress.SkippedLevels.Count < _settings.MaxSkippedLevelsCount)
+                _progress.SkipSelectedLevel();
+                
+            SkipClicked?.Invoke();
+            _levelButtonsGrid.InitializeView(_progress, _settings);
             UpdateFields();
         }
     }

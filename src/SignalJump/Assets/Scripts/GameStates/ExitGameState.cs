@@ -1,4 +1,4 @@
-namespace BountyHunter
+namespace SignalJump
 {
     public sealed class ExitGameState : IGameState
     {

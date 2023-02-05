@@ -1,20 +1,13 @@
-using BountyHunter.Utils;
+using SignalJump.Utils;
 using UnityEngine;
 
-namespace BountyHunter
+namespace SignalJump
 {
-    internal sealed class ClearPrefs
-    {
-        public void Clear()
-        {
-            
-        }
-    }
-    
     public sealed class GameProgressProvider
     {
         private const string KEY = "progress";
         private readonly Serializer<Progress> _serializer;
+        private readonly Settings _settings;
 
         private Progress _progress = new Progress();
 
@@ -22,9 +15,11 @@ namespace BountyHunter
         public bool HasCurrentProgress { get; private set; }
         public Progress Progress => _progress;
 
-        public GameProgressProvider(Serializer<Progress> serializer)
+        public GameProgressProvider(Serializer<Progress> serializer, Settings settings)
         {
             _serializer = serializer;
+            _settings = settings;
+            _progress.LevelsCount = _settings.LevelSequence.Levels.Count;
             HasSavedProgress = PlayerPrefs.HasKey(KEY);
         }
 
@@ -32,6 +27,8 @@ namespace BountyHunter
         {
             HasSavedProgress = true;
 
+            _progress.LevelsCount = _settings.LevelSequence.Levels.Count;
+            
             string serialize = _serializer.Serialize(_progress);
 
             PlayerPrefs.SetString(KEY, serialize);
@@ -50,12 +47,15 @@ namespace BountyHunter
 
             Progress progress = _serializer.Deserialize(text);
             _progress = progress;
+            _progress.LevelsCount = _settings.LevelSequence.Levels.Count;
         }
 
         public void ResetProgressForNewGame()
         {
             HasCurrentProgress = true;
             _progress = new Progress();
+            _progress.LevelsCount = _settings.LevelSequence.Levels.Count;
+            SaveProgress();
         }
     }
 }

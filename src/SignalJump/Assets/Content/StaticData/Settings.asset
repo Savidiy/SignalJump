@@ -12,28 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ece957274a7e45caa968320d235359b7, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  ShipPrefab: {fileID: 6279492215446623562, guid: 56033c4dfaccbe24d8942acf7cbaa40b, type: 3}
-  CameraDistanceOffset: 4.01
-  CameraAngleOffset: -90
-  BackgroundStep: 20.48
-  RotateMaxSpeed: 250
-  RotateAcceleration: 700
-  StrafeMaxSpeed: 10
-  StrafeAcceleration: 10
-  ForwardMaxSpeed: 10
-  ForwardAcceleration: 10
-  BackwardMaxSpeed: 5
-  PlayerFireKey: 32
-  PlayerStrafeLeftKey: 113
-  PlayerStrafeRightKey: 101
-  PlayerRotateLeftKey: 97
-  PlayerRotateRightKey: 100
-  PlayerMoveForwardKey: 119
-  PlayerMoveBackwardKey: 115
-  PlayerFireAlternativeKey: 32
-  PlayerStrafeLeftAlternativeKey: 263
-  PlayerStrafeRightAlternativeKey: 265
-  PlayerRotateLeftAlternativeKey: 260
-  PlayerRotateRightAlternativeKey: 262
-  PlayerMoveForwardAlternativeKey: 264
-  PlayerMoveBackwardAlternativeKey: 261
+  LevelSequence: {fileID: 11400000, guid: b41369b73520f7f4ea73f038cbd1d993, type: 2}
+  LevelButtonHierarchyPrefab: {fileID: 593094060893800252, guid: e2ade03be1c45b646b67aaaaab060a92, type: 3}
+  MaxSkippedLevelsCount: 2
+  LockedLevelColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+  AvailableLevelColor: {r: 0.8773585, g: 0.41798684, b: 0.7576598, a: 1}
+  CompletedLevelColor: {r: 0.23113209, g: 1, b: 0.33306113, a: 1}
+  SkippedLevelColor: {r: 0.5235849, g: 0.6042261, b: 1, a: 1}
+  SelectedLevelColor: {r: 1, g: 0.71237, b: 0, a: 1}

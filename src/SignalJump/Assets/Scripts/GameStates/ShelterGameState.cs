@@ -1,4 +1,6 @@
-namespace BountyHunter
+using SignalJump.Shelter;
+
+namespace SignalJump
 {
     public sealed class ShelterGameState : IGameState
     {

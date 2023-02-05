@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BountyHunter.Utils
+namespace SignalJump.Utils.StateMachine
 {
     public interface IState : IDisposable
     {

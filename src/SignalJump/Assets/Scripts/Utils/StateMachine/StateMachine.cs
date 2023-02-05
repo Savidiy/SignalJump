@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace BountyHunter.Utils
+namespace SignalJump.Utils.StateMachine
 {
     public abstract class StateMachine<T> : IDisposable
         where T : class, IState

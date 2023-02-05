@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump
 {
     public sealed class GameStateMachineInstaller : Installer<GameStateMachineInstaller>
     {
@@ -8,7 +8,7 @@ namespace BountyHunter
         {
             Container.BindInterfacesAndSelfTo<MenuGameState>().AsSingle();
             Container.BindInterfacesAndSelfTo<ShelterGameState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<MissionGameState>().AsSingle();
+            Container.BindInterfacesAndSelfTo<LevelGameState>().AsSingle();
             Container.BindInterfacesAndSelfTo<ExitGameState>().AsSingle();
             
             Container.Bind<GameStateMachine>().AsSingle();

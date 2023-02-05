@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump
 {
     internal sealed class Bootstrapper : IInitializable
     {

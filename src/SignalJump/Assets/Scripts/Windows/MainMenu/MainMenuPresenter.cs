@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump.MainMenu
 {
     public sealed class MainMenuPresenter : MonoBehaviour
     {
@@ -58,6 +58,9 @@ namespace BountyHunter
         public void HideWindow()
         {
             gameObject.SetActive(false);
+            _newGameButton.onClick.RemoveListener(OnNewGameClick);
+            _continueGameButton.onClick.RemoveListener(OnContinueGameClick);
+            _exitGameButton.onClick.RemoveListener(OnExitGameClick);
         }
     }
 }

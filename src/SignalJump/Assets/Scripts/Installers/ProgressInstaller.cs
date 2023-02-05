@@ -1,7 +1,7 @@
-using BountyHunter.Utils;
+using SignalJump.Utils;
 using Zenject;
 
-namespace BountyHunter
+namespace SignalJump
 {
     public sealed class ProgressInstaller : Installer<ProgressInstaller>
     {
