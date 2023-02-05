@@ -7,11 +7,13 @@ namespace SignalJump
     {
         private CancellationTokenSource _cancellationTokenSource;
         private readonly LevelHolder _levelHolder;
+        private readonly PlayerHolder _playerHolder;
         private readonly LevelStateMachine _levelStateMachine;
 
-        public RestartLevelState(LevelHolder levelHolder, LevelStateMachine levelStateMachine)
+        public RestartLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, LevelStateMachine levelStateMachine)
         {
             _levelHolder = levelHolder;
+            _playerHolder = playerHolder;
             _levelStateMachine = levelStateMachine;
         }
         
@@ -23,9 +25,9 @@ namespace SignalJump
         private async UniTask PlayOutro()
         {
             _cancellationTokenSource = new CancellationTokenSource();
+            await _playerHolder.HidePlayer();
             await _levelHolder.HideCells(_cancellationTokenSource.Token);
             _levelHolder.ClearLevel();
-            // await _levelHolder.ShowPlayer();
             _levelStateMachine.EnterToState<IntroLevelState>();
         }
         

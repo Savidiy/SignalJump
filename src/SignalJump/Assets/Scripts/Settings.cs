@@ -27,5 +27,12 @@ namespace SignalJump
         
         public float CellFadeDuration;
         public Ease CellFadeEasing;
+        
+        public PlayerView PlayerViewPrefab;
+        public float PlayerIntroDuration = 1;
+        public Ease PlayerIntroEasing;
+        public Vector3 PlayerIntroOffset;
+        public Ease PlayerOutroEasing;
+        public Vector3 PlayerOutroOffset;
     }
 }

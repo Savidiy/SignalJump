@@ -24,7 +24,13 @@ MonoBehaviour:
   SkippedLevelColor: {r: 0.5235849, g: 0.6042261, b: 1, a: 1}
   SelectedLevelColor: {r: 1, g: 0.71237, b: 0, a: 1}
   CellShowOffset: {x: 0, y: -1, z: 0}
-  CellShowDuration: 0.5
+  CellShowDuration: 0.3
   CellShowEasing: 1
-  CellFadeDuration: 0.5
+  CellFadeDuration: 0.3
   CellFadeEasing: 1
+  PlayerViewPrefab: {fileID: 9151086856500525860, guid: 32f8cb8294f4876499cbde2cc05f7e3e, type: 3}
+  PlayerIntroDuration: 0.5
+  PlayerIntroEasing: 1
+  PlayerIntroOffset: {x: 0, y: 10, z: 0}
+  PlayerOutroEasing: 1
+  PlayerOutroOffset: {x: 0, y: 10, z: 0}

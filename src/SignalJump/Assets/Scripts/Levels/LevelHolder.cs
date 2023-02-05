@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -11,10 +10,12 @@ namespace SignalJump
     public sealed class LevelHolder : IDisposable
     {
         private readonly Settings _settings;
-        private Vector2Int _startPosition;
+
         private BasicLevelCell[,] _cells;
         private int _width;
         private int _height;
+
+        public Vector2Int StartPosition { get; private set; }
 
         public LevelHolder(Settings settings)
         {
@@ -35,7 +36,7 @@ namespace SignalJump
                 {
                     ELevelCellType cellType = levelData.LevelCells[x, y];
                     if (cellType == ELevelCellType.Start)
-                        _startPosition = new Vector2Int(x, y);
+                        StartPosition = new Vector2Int(x, y);
 
                     CreateCell(x, y, cellType);
                 }
@@ -120,10 +121,15 @@ namespace SignalJump
         private void CreateBasicCell(int x, int y)
         {
             BasicLevelCell basicLevelCell = Object.Instantiate(_settings._basicLevelCellPrefab);
+            basicLevelCell.transform.position = ConvertCellToPosition(x, y);
+            _cells[x, y] = basicLevelCell;
+        }
+
+        public Vector3 ConvertCellToPosition(int x, int y)
+        {
             float positionX = x * _settings.CellStep - _width / 2f;
             float positionZ = _height / 2f - y * _settings.CellStep;
-            basicLevelCell.transform.position = new Vector3(positionX, 0, positionZ);
-            _cells[x, y] = basicLevelCell;
+            return new Vector3(positionX, 0, positionZ);
         }
 
         public void Dispose()

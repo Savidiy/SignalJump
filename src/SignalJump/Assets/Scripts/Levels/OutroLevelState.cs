@@ -7,16 +7,19 @@ namespace SignalJump
     {
         private CancellationTokenSource _cancellationTokenSource;
         private readonly LevelHolder _levelHolder;
+        private readonly PlayerHolder _playerHolder;
         private readonly GameStateMachine _gameStateMachine;
         private readonly GameProgressProvider _gameProgressProvider;
 
-        public OutroLevelState(LevelHolder levelHolder, GameStateMachine gameStateMachine, GameProgressProvider gameProgressProvider)
+        public OutroLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, GameStateMachine gameStateMachine,
+            GameProgressProvider gameProgressProvider)
         {
             _levelHolder = levelHolder;
+            _playerHolder = playerHolder;
             _gameStateMachine = gameStateMachine;
             _gameProgressProvider = gameProgressProvider;
         }
-        
+
         public void Enter()
         {
             _gameProgressProvider.Progress.CompleteSelectedLevel();
@@ -27,12 +30,12 @@ namespace SignalJump
         private async UniTask PlayOutro()
         {
             _cancellationTokenSource = new CancellationTokenSource();
+            await _playerHolder.HidePlayer();
             await _levelHolder.HideCells(_cancellationTokenSource.Token);
             _levelHolder.ClearLevel();
-            // await _levelHolder.ShowPlayer();
             _gameStateMachine.EnterToState<ShelterGameState>();
         }
-        
+
         public void Exit()
         {
             _cancellationTokenSource?.Cancel();

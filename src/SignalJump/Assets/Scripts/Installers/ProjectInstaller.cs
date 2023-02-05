@@ -19,6 +19,7 @@ namespace SignalJump
             Container.BindInterfacesAndSelfTo<TickInvoker>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelHolder>().AsSingle();
             Container.BindInterfacesAndSelfTo<LevelUpdater>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerHolder>().AsSingle();
 
             Container.BindInterfacesAndSelfTo<IntroLevelState>().AsSingle();
             Container.BindInterfacesAndSelfTo<OutroLevelState>().AsSingle();
