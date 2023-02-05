@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: LevelSequence
   m_EditorClassIdentifier: 
   Levels:
+  - {fileID: 11400000, guid: a85b510aeb162d24d801e4e2db26a672, type: 2}
+  - {fileID: 11400000, guid: 8c4b1fcfe97608045b179053d1c431d4, type: 2}
   - {fileID: 11400000, guid: 97203d167c44b3b49b380eda77214924, type: 2}
   - {fileID: 11400000, guid: aaa580fe819274b48a811662e44125b8, type: 2}
   - {fileID: 11400000, guid: ebc0a566884f69946bfecad97aa3a35c, type: 2}
   - {fileID: 11400000, guid: 723e05dd87aced9498276d4cb788f0ca, type: 2}
-  - {fileID: 11400000, guid: 986e04b5881a71b49a405466eb307654, type: 2}
-  - {fileID: 11400000, guid: 172362168e7cb234d89fdfb6a837cc8c, type: 2}
   - {fileID: 11400000, guid: 305f522ad0ca3394783534c9e51c37ed, type: 2}
+  - {fileID: 11400000, guid: b79116f7571d3124a85e66986bc2874d, type: 2}
+  - {fileID: 11400000, guid: 172362168e7cb234d89fdfb6a837cc8c, type: 2}
+  - {fileID: 11400000, guid: 986e04b5881a71b49a405466eb307654, type: 2}
+  - {fileID: 11400000, guid: 95f74fd39b911f548a6dbeab45c79b35, type: 2}
+  - {fileID: 11400000, guid: 92a851a88dac3d147b64ae86b425dc3a, type: 2}
+  - {fileID: 11400000, guid: 9958fd15757fda043a3f98045c2b557e, type: 2}
+  - {fileID: 11400000, guid: de3e2be93edf137409ba3d6a80473c2a, type: 2}
+  - {fileID: 11400000, guid: 8344e2a72bc5bdf45913a8462b2cd123, type: 2}

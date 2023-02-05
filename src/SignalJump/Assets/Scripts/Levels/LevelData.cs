@@ -10,17 +10,45 @@ namespace SignalJump
         private const int DEFAULT_Y = 5;
         private const int MINIMAL_LEVEL_SIZE = 2;
 
-        public Vector2Int LevelSize = new Vector2Int(DEFAULT_X,DEFAULT_Y);
+        public Vector2Int LevelSize = new Vector2Int(DEFAULT_X, DEFAULT_Y);
 
         [TableMatrix(HorizontalTitle = "X axis", VerticalTitle = "Y axis")]
-        public ELevelCellType[,] LevelCells = new ELevelCellType[DEFAULT_X,DEFAULT_Y];
+        public ELevelCellType[,] LevelCells = new ELevelCellType[DEFAULT_X, DEFAULT_Y];
+
+        [Button]
+        private void ClearAll()
+        {
+            int width = LevelCells.GetLength(0);
+            int height = LevelCells.GetLength(1);
+            for (int x = 0; x < width && x < LevelSize.x; x++)
+            {
+                for (int y = 0; y < height && y < LevelSize.y; y++)
+                {
+                    LevelCells[x, y] = ELevelCellType.None;
+                }
+            }
+        }
+
+        [Button]
+        private void BasicAll()
+        {
+            int width = LevelCells.GetLength(0);
+            int height = LevelCells.GetLength(1);
+            for (int x = 0; x < width && x < LevelSize.x; x++)
+            {
+                for (int y = 0; y < height && y < LevelSize.y; y++)
+                {
+                    LevelCells[x, y] = ELevelCellType.Basic;
+                }
+            }
+        }
 
         private void OnValidate()
         {
             if (LevelSize.x < MINIMAL_LEVEL_SIZE) LevelSize.x = MINIMAL_LEVEL_SIZE;
             if (LevelSize.y < MINIMAL_LEVEL_SIZE) LevelSize.y = MINIMAL_LEVEL_SIZE;
-            
-            if (LevelCells == null) 
+
+            if (LevelCells == null)
                 LevelCells = new ELevelCellType[LevelSize.x, LevelSize.y];
 
             int width = LevelCells.GetLength(0);

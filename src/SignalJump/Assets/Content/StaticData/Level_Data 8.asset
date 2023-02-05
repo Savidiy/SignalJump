@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fb0d2754f4a4617af2de7ac08cf889f, type: 3}
-  m_Name: Level_Data 1
+  m_Name: Level_Data 8
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -26,10 +26,25 @@ MonoBehaviour:
       Data: 0|SignalJump.ELevelCellType[,], Game
     - Name: 
       Entry: 12
-      Data: 15
+      Data: 25
     - Name: ranks
       Entry: 1
-      Data: 3|5
+      Data: 5|5
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 0
     - Name: 
       Entry: 3
       Data: 0
@@ -53,13 +68,13 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 3
       Data: 1
     - Name: 
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: 
       Entry: 3
       Data: 0
@@ -72,6 +87,21 @@ MonoBehaviour:
     - Name: 
       Entry: 3
       Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
     - Name: 
       Entry: 3
       Data: 0
@@ -81,4 +111,4 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  LevelSize: {x: 3, y: 5}
+  LevelSize: {x: 5, y: 5}
