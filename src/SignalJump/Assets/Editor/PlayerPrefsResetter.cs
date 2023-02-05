@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace SignalJump.Utils.Editor
+namespace Editor
 {
     public static class PlayerPrefsReset
     {
