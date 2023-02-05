@@ -52,10 +52,11 @@ namespace SignalJump
 
         public void ResetProgressForNewGame()
         {
-            HasCurrentProgress = true;
             _progress = new Progress();
             _progress.LevelsCount = _settings.LevelSequence.Levels.Count;
             SaveProgress();
+            HasCurrentProgress = false;
+            HasSavedProgress = false;
         }
     }
 }
