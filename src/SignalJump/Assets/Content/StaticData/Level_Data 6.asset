@@ -29,10 +29,7 @@ MonoBehaviour:
       Data: 15
     - Name: ranks
       Entry: 1
-      Data: 3|5
-    - Name: 
-      Entry: 3
-      Data: 0
+      Data: 5|3
     - Name: 
       Entry: 3
       Data: 1
@@ -44,7 +41,13 @@ MonoBehaviour:
       Data: 1
     - Name: 
       Entry: 3
-      Data: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
+      Data: 1
     - Name: 
       Entry: 3
       Data: 2
@@ -53,32 +56,29 @@ MonoBehaviour:
       Data: 0
     - Name: 
       Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 3
       Data: 1
     - Name: 
       Entry: 3
       Data: 1
     - Name: 
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  LevelSize: {x: 3, y: 5}
+  LevelSize: {x: 5, y: 3}
