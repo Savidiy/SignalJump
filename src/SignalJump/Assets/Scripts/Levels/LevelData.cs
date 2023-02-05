@@ -8,7 +8,7 @@ namespace SignalJump
     {
         private const int DEFAULT_X = 3;
         private const int DEFAULT_Y = 5;
-        private const int MINIMAL_LEVEL_SIZE = 3;
+        private const int MINIMAL_LEVEL_SIZE = 2;
 
         public Vector2Int LevelSize = new Vector2Int(DEFAULT_X,DEFAULT_Y);
 

@@ -26,10 +26,10 @@ MonoBehaviour:
       Data: 0|SignalJump.ELevelCellType[,], Game
     - Name: 
       Entry: 12
-      Data: 15
+      Data: 10
     - Name: ranks
       Entry: 1
-      Data: 3|5
+      Data: 2|5
     - Name: 
       Entry: 3
       Data: 0
@@ -61,24 +61,9 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  LevelSize: {x: 3, y: 5}
+  LevelSize: {x: 2, y: 5}

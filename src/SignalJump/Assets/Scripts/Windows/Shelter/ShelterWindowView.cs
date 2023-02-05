@@ -68,8 +68,8 @@ namespace SignalJump.Shelter
 
         private void OnStartMissionClick()
         {
-            // StartMissionClicked?.Invoke();
-            _progress.CompleteSelectedLevel();
+            StartMissionClicked?.Invoke();
+            // _progress.CompleteSelectedLevel();
             UpdateFields();
         }
 

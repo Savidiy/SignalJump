@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelSequence: {fileID: 11400000, guid: b41369b73520f7f4ea73f038cbd1d993, type: 2}
   LevelButtonHierarchyPrefab: {fileID: 593094060893800252, guid: e2ade03be1c45b646b67aaaaab060a92, type: 3}
+  _basicLevelCellPrefab: {fileID: 7745713556342707986, guid: 59e715b3ff4080849bf5d4d5ef2aff1c, type: 3}
+  CellStep: 1.2
   MaxSkippedLevelsCount: 2
+  ShowCellsDelay: 0.2
   LockedLevelColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   AvailableLevelColor: {r: 0.8773585, g: 0.41798684, b: 0.7576598, a: 1}
   CompletedLevelColor: {r: 0.23113209, g: 1, b: 0.33306113, a: 1}
   SkippedLevelColor: {r: 0.5235849, g: 0.6042261, b: 1, a: 1}
   SelectedLevelColor: {r: 1, g: 0.71237, b: 0, a: 1}
+  CellShowOffset: {x: 0, y: -1, z: 0}
+  CellShowDuration: 0.5
+  CellShowEasing: 1
+  CellFadeDuration: 0.5
+  CellFadeEasing: 1

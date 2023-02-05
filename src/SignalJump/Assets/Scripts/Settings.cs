@@ -1,4 +1,5 @@
-﻿using SignalJump.Shelter;
+﻿using DG.Tweening;
+using SignalJump.Shelter;
 using UnityEngine;
 
 namespace SignalJump
@@ -8,13 +9,23 @@ namespace SignalJump
     {
         public LevelSequence LevelSequence;
         public LevelButtonHierarchy LevelButtonHierarchyPrefab;
+        public BasicLevelCell _basicLevelCellPrefab;
 
+        public float CellStep = 3;
         public int MaxSkippedLevelsCount = 3;
+        public float ShowCellsDelay = 0.2f;
         
         public Color LockedLevelColor;
         public Color AvailableLevelColor;
         public Color CompletedLevelColor;
         public Color SkippedLevelColor;
         public Color SelectedLevelColor;
+        
+        public Vector3 CellShowOffset;
+        public float CellShowDuration;
+        public Ease CellShowEasing;
+        
+        public float CellFadeDuration;
+        public Ease CellFadeEasing;
     }
 }

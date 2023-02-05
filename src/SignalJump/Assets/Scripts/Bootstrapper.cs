@@ -8,13 +8,19 @@ namespace SignalJump
     {
         private readonly GameStateMachine _gameStateMachine;
 
-        public Bootstrapper(GameStateMachine gameStateMachine, List<IGameState> gameStates)
+        public Bootstrapper(GameStateMachine gameStateMachine, List<IGameState> gameStates, LevelStateMachine levelStateMachine,
+            List<ILevelState> levelStates)
         {
             _gameStateMachine = gameStateMachine;
 
             foreach (IGameState gameState in gameStates)
             {
                 _gameStateMachine.AddState(gameState);
+            }
+            
+            foreach (ILevelState levelState in levelStates)
+            {
+                levelStateMachine.AddState(levelState);
             }
         }
 
