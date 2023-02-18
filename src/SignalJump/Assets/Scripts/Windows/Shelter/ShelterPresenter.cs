@@ -54,10 +54,10 @@ namespace SignalJump.Shelter
             _gameStateMachine.EnterToState<MenuGameState>();
         }
 
-        private void OnStartMissionClicked()
+        private void OnStartMissionClicked(int level)
         {
             _gameProgressProvider.SaveProgress();
-            _gameStateMachine.EnterToState<LevelGameState>();
+            _gameStateMachine.EnterToState<LevelGameState, int>(level);
         }
     }
 }

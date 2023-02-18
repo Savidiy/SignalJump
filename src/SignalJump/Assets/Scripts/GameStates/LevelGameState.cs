@@ -1,6 +1,8 @@
+using SignalJump.Utils.StateMachine;
+
 namespace SignalJump
 {
-    public sealed class LevelGameState : IGameState
+    public sealed class LevelGameState : IGameState, IStateWithPayload<int>, IStateWithExit
     {
         private readonly LevelStateMachine _levelStateMachine;
         private readonly LevelWindow _levelWindow;
@@ -11,19 +13,15 @@ namespace SignalJump
             _levelWindow = levelWindow;
         }
 
-        public void Enter()
+        public void Enter(int level)
         {
             _levelWindow.ShowWindow();
-            _levelStateMachine.EnterToState<IntroLevelState>();
+            _levelStateMachine.EnterToState<IntroLevelState, int>(level);
         }
 
         public void Exit()
         {
             _levelWindow.HideWindow();
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

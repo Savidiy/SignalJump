@@ -1,8 +1,9 @@
 ﻿using SignalJump.MainMenu;
+using SignalJump.Utils.StateMachine;
 
 namespace SignalJump
 {
-    public sealed class MenuGameState : IGameState
+    public sealed class MenuGameState : IGameState, IState, IStateWithExit
     {
         private readonly MainMenuPresenter _mainMenuPresenter;
 
@@ -19,10 +20,6 @@ namespace SignalJump
         public void Exit()
         {
             _mainMenuPresenter.HideWindow();
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace SignalJump.Utils.StateMachine
+﻿namespace SignalJump.Utils.StateMachine
 {
-    public interface IState : IDisposable
+    public interface IState
     {
         void Enter();
-        void Exit();
     }
 }

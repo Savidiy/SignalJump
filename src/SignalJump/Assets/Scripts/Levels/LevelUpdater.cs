@@ -73,7 +73,7 @@ namespace SignalJump
                 }
                 else
                 {
-                    _levelStateMachine.EnterToState<RestartLevelState>();
+                    RestartLevel();
                 }
             }
             else
@@ -83,9 +83,15 @@ namespace SignalJump
             }
         }
 
+        private void RestartLevel()
+        {
+            int levelIndex = _gameProgressProvider.Progress.SelectedLevelIndex;
+            _levelStateMachine.EnterToState<RestartLevelState, int>(levelIndex);
+        }
+
         private void OnRestartClicked()
         {
-            _levelStateMachine.EnterToState<RestartLevelState>();
+            RestartLevel();
         }
 
         private void OnBackClicked()

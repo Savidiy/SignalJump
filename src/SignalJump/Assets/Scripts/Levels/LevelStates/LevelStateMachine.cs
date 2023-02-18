@@ -2,7 +2,7 @@
 
 namespace SignalJump
 {
-    public interface ILevelState : IState
+    public sealed class LevelStateMachine : StateMachine<ILevelState>
     {
     }
 }

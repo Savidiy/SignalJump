@@ -16,7 +16,7 @@ namespace SignalJump.Shelter
 
         public event Action MenuClicked;
         public event Action SkipClicked;
-        public event Action StartMissionClicked;
+        public event Action<int> StartMissionClicked;
 
         public void ShowWindow(Progress progress, Settings settings)
         {
@@ -68,8 +68,7 @@ namespace SignalJump.Shelter
 
         private void OnStartMissionClick()
         {
-            StartMissionClicked?.Invoke();
-            // _progress.CompleteSelectedLevel();
+            StartMissionClicked?.Invoke(_progress.SelectedLevelIndex);
             UpdateFields();
         }
 

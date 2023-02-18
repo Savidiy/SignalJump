@@ -21,11 +21,11 @@ namespace SignalJump
             Container.BindInterfacesAndSelfTo<LevelUpdater>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerHolder>().AsSingle();
 
-            Container.BindInterfacesAndSelfTo<IntroLevelState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<OutroLevelState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<RestartLevelState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<WaitInputState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelStateMachine>().AsSingle();
+            Container.Bind<IntroLevelState>().AsSingle();
+            Container.Bind<OutroLevelState>().AsSingle();
+            Container.Bind<RestartLevelState>().AsSingle();
+            Container.Bind<WaitInputState>().AsSingle();
+            Container.Bind<LevelStateMachine>().AsSingle();
 
             Container.Bind<LevelWindow>().FromInstance(LevelWindow).AsSingle();
             Container.Bind<Settings>().FromInstance(Settings).AsSingle();

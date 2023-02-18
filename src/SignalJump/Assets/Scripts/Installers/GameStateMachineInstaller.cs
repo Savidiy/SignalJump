@@ -6,10 +6,10 @@ namespace SignalJump
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<MenuGameState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ShelterGameState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelGameState>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ExitGameState>().AsSingle();
+            Container.Bind<MenuGameState>().AsSingle();
+            Container.Bind<ShelterGameState>().AsSingle();
+            Container.Bind<LevelGameState>().AsSingle();
+            Container.Bind<ExitGameState>().AsSingle();
             
             Container.Bind<GameStateMachine>().AsSingle();
         }

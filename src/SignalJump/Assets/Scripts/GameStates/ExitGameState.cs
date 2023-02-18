@@ -1,6 +1,8 @@
+using SignalJump.Utils.StateMachine;
+
 namespace SignalJump
 {
-    public sealed class ExitGameState : IGameState
+    public sealed class ExitGameState : IGameState, IState
     {
         private readonly GameProgressProvider _gameProgressProvider;
 
@@ -13,14 +15,6 @@ namespace SignalJump
         {
             _gameProgressProvider.SaveProgress();
             QuitGame();
-        }
-
-        public void Exit()
-        {
-        }
-
-        public void Dispose()
-        {
         }
 
         private static void QuitGame()

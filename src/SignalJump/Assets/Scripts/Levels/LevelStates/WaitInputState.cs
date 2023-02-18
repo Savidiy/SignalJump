@@ -1,6 +1,8 @@
-﻿namespace SignalJump
+﻿using SignalJump.Utils.StateMachine;
+
+namespace SignalJump
 {
-    internal class WaitInputState : ILevelState
+    internal class WaitInputState : ILevelState, IState, IStateWithExit
     {
         private readonly LevelUpdater _levelUpdater;
 
@@ -17,10 +19,6 @@
         public void Exit()
         {
             _levelUpdater.Deactivate();
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

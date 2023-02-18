@@ -1,28 +1,27 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using SignalJump.Utils.StateMachine;
 
 namespace SignalJump
 {
-    public class IntroLevelState : ILevelState
+    public class IntroLevelState : ILevelState, IStateWithPayload<int>, IStateWithExit, IDisposable
     {
         private readonly LevelStateMachine _levelStateMachine;
-        private readonly GameProgressProvider _gameProgressProvider;
         private readonly LevelHolder _levelHolder;
         private readonly PlayerHolder _playerHolder;
         private CancellationTokenSource _cancellationTokenSource;
 
-        public IntroLevelState(LevelStateMachine levelStateMachine, GameProgressProvider gameProgressProvider,
-            LevelHolder levelHolder, PlayerHolder playerHolder)
+        public IntroLevelState(LevelStateMachine levelStateMachine, LevelHolder levelHolder, PlayerHolder playerHolder)
         {
             _levelStateMachine = levelStateMachine;
-            _gameProgressProvider = gameProgressProvider;
             _levelHolder = levelHolder;
             _playerHolder = playerHolder;
         }
 
-        public void Enter()
+        public void Enter(int levelIndex)
         {
-            _levelHolder.StartLevel(_gameProgressProvider.Progress.SelectedLevelIndex);
+            _levelHolder.StartLevel(levelIndex);
             _playerHolder.CreatePlayer();
             PlayIntro().Forget();
         }

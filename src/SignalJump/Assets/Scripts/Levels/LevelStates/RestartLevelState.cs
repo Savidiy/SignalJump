@@ -1,36 +1,38 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using SignalJump.Utils.StateMachine;
 
 namespace SignalJump
 {
-    internal class OutroLevelState : ILevelState
+    internal class RestartLevelState : ILevelState, IStateWithPayload<int>, IStateWithExit, IDisposable
     {
         private CancellationTokenSource _cancellationTokenSource;
         private readonly LevelHolder _levelHolder;
         private readonly PlayerHolder _playerHolder;
-        private readonly GameStateMachine _gameStateMachine;
+        private readonly LevelStateMachine _levelStateMachine;
 
-        public OutroLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, GameStateMachine gameStateMachine)
+        public RestartLevelState(LevelHolder levelHolder, PlayerHolder playerHolder, LevelStateMachine levelStateMachine)
         {
             _levelHolder = levelHolder;
             _playerHolder = playerHolder;
-            _gameStateMachine = gameStateMachine;
+            _levelStateMachine = levelStateMachine;
         }
-
-        public void Enter()
+        
+        public void Enter(int levelIndex)
         {
-            PlayOutro().Forget();
+            PlayOutro(levelIndex).Forget();
         }
 
-        private async UniTask PlayOutro()
+        private async UniTask PlayOutro(int levelIndex)
         {
             _cancellationTokenSource = new CancellationTokenSource();
             await _playerHolder.HidePlayer();
             await _levelHolder.HideCells(_cancellationTokenSource.Token);
             _levelHolder.ClearLevel();
-            _gameStateMachine.EnterToState<ShelterGameState>();
+            _levelStateMachine.EnterToState<IntroLevelState, int>(levelIndex);
         }
-
+        
         public void Exit()
         {
             _cancellationTokenSource?.Cancel();
